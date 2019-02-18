@@ -1,0 +1,80 @@
+\section{Underwater landing platform}
+
+ The underwater platform was designed with negative buoyancy, consisting of a landing structure, high resolution seafloor mapping system, navigation sensors and control hardware. The platform was manufactured and assembled at the Institute of Industrial Science, The University of Tokyo.
+
+%*************************************************************************
+
+\subsection{Platform hardware}
+
+ The design features implemented on the platform can be seen in the Fig.~\ref{sf:auv_design}. Two horizontal thrusters provide surge and heading control. Two vectored thrusters, inclined at $22.5^\circ$, control sway and heave. Independent heave, surge, sway and heading control allows the platform to perform slow speed manoeuvres and hover when necessary. The vectored thrusters also direct the thrust away from the area directly below the platform minimizing the disturbance of sand and sediments during landing. 
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=3.5in]{./images/mehul1a.png}
+\caption{Design of the the underwater platform}
+\label{f:mehul1a}
+\end{figure}
+
+The platform is designed to be negatively buoyant for landing with minimum use of its vectored thrusters and remain stationary, vibration free after landing. Although variable buoyancy engines are available \cite{Zhao2008}, for our platform we obtained negative buoyancy using fixed weights. A NACA$651412$ wing profile is used to offset the negative buoyancy by generating lift during forward motion at zero angle of attack. A nylon landing skid provides stable footing and protects sensors under the platform. 
+
+%*************************************************************************
+
+\subsection{Platform sensors}
+
+The navigation sensors on the platform area shown in Table.~\ref{t:auv_specs}.
+
+\begin{table}[!ht]
+\centering
+\caption{Specifications of the underwater platform and sensors}
+\begin{tabular}{  |p{4cm}  p{10cm} | }
+\hline
+\textbf{Property} & \textbf{Specifications}\\ \hline 
+\textbf{Hardware} & \\
+Underwater platform size (m) &  $2.1$ m $\times 1.2$ m, height $0.5$ m \\
+Landing structure size (m) &  $1.7$ m $\times 0.75$ m\\
+Mass in air (Kg) & $125$\\
+Depth rating (m) & $750$\\
+\hline
+\textbf{Propulsion} & 2 $\times$ surge, 2 $\times$ vectored sway and heave\\
+\hline 
+\textbf{Navigation} & \\
+Velocity & RDI WH-DVL$1200$kHz \\
+Depth & Pressure sensor \\
+Heading &  JG-35FD single axis FOG \\
+\hline
+\textbf{Computing} & \\
+Main PC & Intel Atom D525 Dual Core $1.8$ GHz, $1$GB DDR$3$ RAM  \\
+Vision PC  & Intel Core 2 Duo T7400 $2.16$ GHz, $2$GB DDR$2$ RAM \\
+\hline
+\textbf{Power} & Li-ion $24$V, $10$Ah \\ 
+\hline
+\textbf{Mapping system} & \\
+Camera & Mono, $640 \times 480$ at $25$FPS, opening angle (water) $60.2^{\circ} \times 50.4^{\circ}$\\
+Laser & $532$ nm, $50$mW, opening angle $90^{\circ}$ \\
+\hline 
+
+\end{tabular}
+\label{t:auv_specs}
+\end{table}
+
+A high resolution mapping system using light sectioning is used with an optimal mapping altitude of $2$ m. The hardware setup of the mapping system is seen in Fig.~\ref{f:laser_system}. For the geometry of setup, a mapping altitude of $2$ m provides a swatch of $2.3$ m with a cross-track resolution of $4$ mm and a vertical resolution of $7$ mm. A forward velocity of $0.1$ m/s provides an along-track resolution of $4$ mm. 
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=5.4in]{./images/mehul35.png}
+\caption{Setup of the high resolution mapping system}
+\label{f:laser_system}
+\end{figure}
+
+%*************
+
+\subsection{Survey procedure}
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=3.5in]{./images/mehul36.png}
+\caption{Scheme for mapping and landing on the seafloor}
+\label{f:flow_mission}
+\end{figure}
+
+Before each trial, parameters for the landing algorithm are calculated and provided to the platform. The block size $B$ is estimated based on the grid resolution required for the trial. The platform performs observation in the desired survey along waypoints using a survey scheme shown in Fig.~\ref{f:flow_mission}.
+
+ During trials, navigation is performed using dead reckoning by integrating the velocity and orientation together with depth to estimate the state of the platform at any moment in time. For the landing sequence, the approach heading to the landing coordinate is calculated and the platform navigates at the set mapping altitude. The landing control system performs vertical descent to an altitude of $1$ m while maintaining position using sway and surge thrusters and adjusting heading to the landing heading. During the final landing sequence, the depth control is switched-off and underwater platform is made to land using its own weight while maintaining horizontal position and heading.
+ 

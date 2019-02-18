@@ -1,0 +1,190 @@
+\section{Tank trials}
+
+To demonstrate the landing framework trials were conducted at the Chiba experimental station of The University of Tokyo which is equipped with a $50 \times 10$ m fresh water tank with a uniform depth of $5$ m. 
+
+%*************
+
+\subsection{Setup on tank floor}
+
+An artificial landscape was setup on the tank floor using four targets as seen in Fig.~\ref{f:tank_setup}. The targets were constructed using wooden panels and plastic boxes mounted on aluminum frames with attributes as given in Table~\ref{t:target_specs}. Target T$_1$ has a steep sloping area, higher than the critical slope, on which the underwater platform cannot safely land. Targets T$_2$ and T$_4$ are flat, forming the landing area with the landing site on T$_2$ being larger than T$_4$. Target T$_3$ has a flat base with a box object placed on top making the landing area smaller than the underwater platform, with no possibility of finding a landing site. Target T$_2$ is the most suitable landing site with its center as the optimal landing coordinate. The target T$_2$ is setup with its longer side along $-90^\circ$ or $+90^\circ$ heading. 
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=5.3in]{./images/mehul37.png}
+\caption{Four targets setup on the tank floor to form a scenario}
+\label{f:tank_setup}
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\caption{Targets for setting up scenario on the tank floor}
+\begin{tabular}{ | p{2cm} p{3cm} p{3cm} p{3cm} p{3cm} |}
+\hline
+\textbf{Target} & Part & \textbf{Size ($l \times b \times h$)} & \textbf{Area} & \textbf{Slope}\\ 
+\hline 
+T$_1$ & Wooden panel & ${2.4} \times {1.2} \times {1.0}$ m & ${2.88}$ m$^2$ & $45^\circ$\\
+T$_2$ & Wooden panel & ${2.4} \times {1.2} \times {1.0}$ m & ${2.88}$ m$^2$ & $0^\circ$\\
+T$_3$ & Wooden panel & ${1.8} \times {0.9} \times {0.5}$ m & ${1.62}$ m$^2$ & $0^\circ$\\
+      & Box object & ${0.4} \times {0.4} \times {0.5}$ m & ${0.16}$ m$^2$ & $0^\circ$\\
+T$_4$ & Wooden panel & ${1.8} \times {0.9} \times {0.5}$ m & ${1.62}$ m$^2$ & $0^\circ$\\
+\hline
+\end{tabular}
+\label{t:target_specs}
+\end{table}
+
+
+%*************
+
+\subsection{Procedure for trials}
+ 
+Trials were conducted for different mapping trajectories and with two different grid resolutions. The scenario setup, underwater platform hardware and parameters for landing algorithm were kept identical to evaluate if the same final landing site and landing point are selected under different mapping conditions. The range for the forward obstacle avoidance sonar was set to $1.0$ m to prevent collision with the walls of the tank. The limits of the depth filter were set between  $3.75$ m and $4.75$ m to reject the tank floor during identification of landing sites. The critical slope and height parameters required by the landing algorithm were calculated for the physical properties of the underwater platform. The parameters for the underwater platform are same as those used in the simulation. The parameters for the landing algorithm calculated are seen in Table~\ref{t:common_specs}. 
+
+\begin{table}[!ht]
+\centering
+\caption{Parameters for the trials}
+\begin{tabular}{ | p{5cm}  p{5cm} |}
+\hline
+\textbf{Property} & \textbf{Value}\\ \hline
+Slope threshold $\theta_c$ & $18.3^\circ$\\
+Height threshold $h_c$ & $0.21$ m \\
+Step size $\Delta \alpha$ & $5^\circ$ \\
+\hline
+\end{tabular}
+\label{t:common_specs}
+\end{table}
+
+The waypoints setup for mapping the scenario in trials A and B are seen in Fig~\ref{f:trial_scene}. During trial A, the underwater platform was made to perform mapping diagonally along waypoints A$_1$ and A$_2$ while in trial B, mapping was performed along three straight line transects along waypoints B$_1$, B$_2$, B$_3$ and B$_4$. The mapping parameters set for the trials can be seen in Table
+
+\begin{table}[!ht]
+\centering
+\caption{Parameters for the trials}
+\begin{tabular}{ | p{5cm}  p{5cm} p{5cm}|}
+\hline
+\textbf{Property} & \textbf{Trial A}  & \textbf{Trial B}\\ \hline
+Grid resolution  & $10$ mm & $5$ mm \\
+Block size $h_c$ & $0.21$ m & \\
+Points of FFT  & $5^\circ$ & \\
+\hline
+\end{tabular}
+\label{t:common_specs}
+\end{table}
+
+The grid resolution was set to $10$ mm with a block size $B$ of $5.12$ m and overlap of $1$ m. For mapping within the desired grid resolution, the scanning velocity was set to $0.15$ m/s with altitude of $4$ m to obtain a wide swath of $4.6$ m. The cross track, along track and vertical resolutions obtained from a mapping altitude of $4$ m are $7$ mm, $6$ mm and $12$ mm respectively. During trial B, the underwater platform was made to perform mapping in three straight line transects along waypoints B$_1$, B$_2$, B$_3$ and B$_4$. The grid resolution was set to $5$ mm with a block size $B$ of $2.56$ m and overlap of $0.5$ m. The scanning velocity was set to $0.1$ m/s and altitude of $2$ m to obtain a swath of $2.3$ m. The cross track, along track and vertical resolutions obtained from a mapping altitude of $2$ m are $4$ mm, $4$ mm and $7$ mm respectively.
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=4.7in]{./images/mehul49.png}
+\caption{Waypoints for mapping during trial A and B}
+\label{f:trial_scene}
+\end{figure}
+
+%%*************************************************************************
+
+\subsection{Results of the trials}
+
+Mapping was performed autonomously to generate point clouds of the tank floor as in  Fig.~\ref{f:trial_bathy}. Targets T$_2$, T$_3$ and T$_4$ are seen mapped in trial A while all targets are mapped in trial B with a higher resolution. A $512$ point FFT was used for analysis of point cloud in both trials. For trial A, the point cloud was analyzed in two overlapping to detect landing area. The algorithm identified the tank floor, and flat areas of  T$_2$, T$_3$ and T$_4$ as landing area as in Fig~\ref{sf:triala_landingarea}. In trial B, the target T$_1$ was rejected as landing area due to its slope. The tank floor and other remaining targets were identified as the landing area as in Fig~\ref{sf:trialb_landingarea}.
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Mapping tank floor in trial A\label{sf:triala_bathy}]{\includegraphics[width=3.0in]{./images/mehul39.png}}\quad
+\subfloat[Mapping tank floor in trail B\label{sf:trialb_bathy}]{\includegraphics[width=3.0in]{./images/mehul50.png}}
+\caption{Mapping tank floor along provided waypoints. The targets placed on the tank floor can be clearly seen}
+\label{f:trial_bathy}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Detecting landing area in trial A\label{sf:triala_landingarea}]{\includegraphics[width=3in]{./images/mehul41.png}}\quad
+\subfloat[Detecting landing area in trail B\label{sf:trialb_landingarea}]{\includegraphics[width=3in]{./images/mehul52.png}}
+\caption{Non-landing area (red) and landing area (orange) detected in the mapped tank floor point cloud}
+\end{figure}
+
+The landing area identified as tank floor was rejected by a depth filter introduced for the trials. In the remaining landing area, $9$ landing candidates were identified along landing headings between $-90^\circ$ to $+90^\circ$ in trial A. Landing sites were identified at targets T$_2$ and T$_4$ while target T$_3$ was rejected due to insufficient landing area. Identical $9$ landing sites were also detected during trial B at targets T$_2$ and T$_4$. Target T$_1$ and T$_2$ were rejected due to slope and insufficient landing area respectively. The landing sites identified for both trials are seen in Table.~\ref{t:trialab_sites}. 
+
+\begin{table}[!ht]
+\caption{Landing candidates for trial A and B}
+
+\begin{minipage}{.5\linewidth}
+\centering
+\begin{tabular}{  | p{0.7cm}  p{1.5cm} p{1.5cm} p{1.7cm} | }
+\hline 
+\textbf{Site} & \textbf{Target} & \textbf{Heading} & \textbf{Mean depth} \\ \hline 
+$S_1$ & T$_2$ & $-90.0$ & $4.05$ \\
+$S_2$ & T$_2$ & $-85.0$ & $4.05$ \\
+$S_3$ & T$_2$ & $-80.0$ & $4.05$ \\
+$S_4$ & T$_2$ & $-75.0$ & $4.05$ \\
+$S_5$ & T$_4$ & $0.0$   & $4.55$ \\
+$S_6$ & T$_4$ & $5.0$   & $4.55$ \\
+$S_7$ & T$_2$ & $75.0$  & $4.05$ \\
+$S_8$ & T$_2$ & $80.0$  & $4.04$ \\
+$S_9$ & T$_2$ & $85.0$  & $4.05$ \\\hline
+\end{tabular} 
+\end{minipage}\qquad	
+\begin{minipage}{.5\linewidth}
+\centering
+\begin{tabular}{ |  p{0.7cm}  p{1.5cm} p{1.5cm} p{1.7cm} |}
+\hline 
+\textbf{Site} & \textbf{Target} & \textbf{Heading} & \textbf{Mean depth}\\ \hline 
+$S_1$ & T$_2$ & $-90.0$ & $4.04$ \\
+$S_2$ & T$_2$ & $-85.0$ & $4.05$ \\
+$S_3$ & T$_2$ & $-80.0$ & $4.05$ \\
+$S_4$ & T$_2$ & $-75.0$ & $4.04$ \\
+$S_5$ & T$_4$ & $0.0$   & $4.54$ \\
+$S_6$ & T$_4$ & $5.0$   & $4.55$ \\
+$S_7$ & T$_2$ & $75.0$  & $4.05$ \\
+$S_8$ & T$_2$ & $80.0$  & $4.05$ \\
+$S_9$ & T$_2$ & $85.0$  & $4.04$ \\ \hline
+\end{tabular}
+\end{minipage}
+\label{t:trialab_sites}
+\end{table}
+
+The landing costs for the identified $9$ landing sites during both trials were found similar as seen in Fig.~\ref{f:trial_la_cost}. In both cases, the landing site $S_1$ at target T$_2$ with landing heading of $-90.0$ or $90.0$ was selected as the final landing site.
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Trial A\label{sf:trialb_la_cost}]{\includegraphics[width=3in]{./images/mehul44.png}}
+\subfloat[Trial B\label{sf:trialb_lb_cost}]{\includegraphics[width=3in]{./images/mehul55.png}}
+\caption{Cost value for identified landing sites. Black dot indicates landing site with least landing cost}
+\label{f:trial_la_cost}
+\end{figure}
+
+The final landing headings and landing coordinates selected during the trials are seen in Fig.~\ref{f:trial_landing_point}. In trial A, approach heading to the landing point after mapping was calculated as $-57.4^\circ$ resulting in a  final landing heading of $-90^\circ$. While an approach heading of $25.6^\circ$ to the landing point was calculated during trial B thereby selecting the final landing heading of $90^\circ$. The properties of the final landing sites selected during the trials A and B are seen in Table.~\ref{t:trial_land_stats}. 
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Detecting landing site in trial A\label{sf:triala_landing_point}]{\includegraphics[width=3in]{./images/mehul45.png}}\quad
+\subfloat[Detecting landing site in trial B\label{sf:trialb_landing_point}]{\includegraphics[width=3in]{./images/mehul56.png}}
+\caption{Non-landing area (red), landing area (orange) and landing site (green) detected in the mapped tank floor point cloud. The landing point (asterix), landing heading (red triangle) and the outline of the underwater platform (black rectangle)}
+\label{f:trial_landing_point}
+\end{figure}
+
+
+\begin{table}[!ht]
+\centering
+\caption{Properties of final landing candidate $S_1$}
+\begin{tabular}{ | p{6cm}  p{3cm} p{3cm} |}
+\hline
+\textbf{Property} & \textbf{Trial A} & \textbf{Trial B}\\ \hline
+Landing heading & $-90^\circ$ & $90^\circ$\\
+Landing area & $2.72$ m & $2.73$ m\\
+Mean depth & $4.05$ m & $4.04$ m\\
+Mean slope & $3.0^\circ$ & $2.6^\circ$\\
+Rugosity index & $1.04$ & $1.03$\\
+Safety margin & $1.858$ & $1.791$ \\
+\hline
+\end{tabular}
+\label{t:trial_land_stats}
+\end{table}
+
+The trajectory and depth of the underwater plattform,  time for executing different stages of the method and images taken can be seen in Fig.~\ref{f:trial_lpoint_xy_depth}. In both test conditions, the same landing coordinate was detected close to the centre of target T$_2$. Errors in approaching and landing at the selected landing coordinate were caused due to drift in the navigational sensors during dead reckoning. Full implementation may require more sophisticated motion localization techniques. [\textbf{reference stereo slam?}]
+
+\begin{figure}[!ht]
+\centering
+\subfloat[Trial A: X-Y trajectory\label{sf:triala_position}]{\includegraphics[width=3in]{./images/mehul46.png}}
+\subfloat[Trial B: X-Y trajectory\label{sf:trialb_position}]{\includegraphics[width=3in]{./images/mehul57.png}}\quad
+\subfloat[Trial A: Depth plot\label{sf:triala_depth}]{\includegraphics[width=3in]{./images/mehul47.png}}
+\subfloat[Trial B: Depth plot\label{sf:trialb_depth}]{\includegraphics[width=3in]{./images/mehul58.png}}\quad
+\subfloat[Trial A: Mapping (P1) and landing (P2)\label{sf:triala_images}]{\includegraphics[width=3in]{./images/mehul48.png}}
+\subfloat[Trial B: Mapping (P1) and landing (P2)\label{sf:trialb_images}]{\includegraphics[width=3in]{./images/mehul59.png}}
+\caption{Vehicle navigation and images taken during trial A and B}
+\label{f:trial_lpoint_xy_depth}
+\end{figure}
