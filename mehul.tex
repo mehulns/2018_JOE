@@ -226,7 +226,7 @@
 %\fnbelowfloat
 % to enable the placement of footnotes below bottom floats (the standard
 % LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not workhttps://www.overleaf.com/project/5c170ba37d677a2df920c34a
+% which rewrites many portions of the LaTeX2e float routines. It may not work
 % with other packages that modify the LaTeX2e float routines. The latest
 % version and documentation can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
@@ -313,7 +313,7 @@
 
 %%**********************************
 
-\title{Autonomous landing of underwater vehicles using millimeter resolution laser bathymetry}
+\title{Autonomous landing of underwater vehicles using mm-resolution laser bathymetry}
 
 %%**********************************
 
@@ -329,9 +329,9 @@
         Adrian Bodenmann,~\IEEEmembership{Member,~IEEE,}        
         and~Tamaki Ura,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
 \thanks{M. Sangekar is a project researcher with the Institute of Industrial Science, The University of Tokyo (email: mehul@iis.u-tokyo.ac.jp)}
-\thanks{B. Thornton is an Associate Professor at the Maritime Robotics Laboratory, Southampton Marine and Maritime Institute, Faculty of Engineering and Physical Science, The University of Southampton, with an adjunct position at the Institute of Industrial Science, The University of Tokyo (email: b.thornton@soton.ac.uk)}
-\thanks{A. Bodenmann is a senior research assistant in the Maritime Robotics Laboratory, Southampton Marine and Maritime Institute, Faculty of Engineering and Physical Science, The University of Southampton (email: adrian.bodenmann@soton.ac.uk)}
-\thanks{T. Ura is a Distinguished Professor at the Center for Socio-Robotic Synthesis, Kyushu Institute of Technology (email: ura@lsse.kyutech.ac.jp)}
+\thanks{B. Thornton is an Associate Professor at the Southampton Marine and Maritime Institute, University of Southampton with an adjunct cross appointment at the Institute of Industrial Science, The University of Tokyo (email: b.thornton@soton.ac.uk)}
+\thanks{A. Bodenmann is a project researcher with the Institute of Industrial Science, The University of Tokyo (email: adrian@iis.u-tokyo.ac.jp)}
+\thanks{T. Ura is associated with the Center for Socio-Robotic Synthesis, Kyushu Institute of Technology (email: ura@lsse.kyutech.ac.jp)}
 \thanks{This work was supported by the Japanese Ministry of Education under the Program for the "Development of Fundamental Tools for the Utilization of Marine Resources".}}
 
 %%**********************************
@@ -347,7 +347,7 @@
 %%**********************************
 
 \begin{abstract}
-The ability to land on the seafloor expands the envelope of tasks that underwater vehicles can carry out during survey and inspection. However, even though remotely operated vehicles routinely land during their operations, autonomous underwater vehicles (AUVs) lack the sensing and data processing capabilities needed to identify safe, stable landing sites. Here, an algorithm is developed that uses mm-resolution bathymetry to detect regions where an AUV of known geometry can safely and stably land on the seafloor. The algorithm uses physical models that consider vehicle geometry, seafloor slope, rugosity, friction and currents. It can identifying the most suitable of multiple candidate sites based on a landing cost function. The algorithm's performance is evaluated using seafloor bathymetry data that was obtained using an AUV equipped with a high resolution laser mapping system on the slopes of the Takuyo Daigo seamount in the Northwest Pacific. The algorithm successfully identifies multiple landing sites along a 500\,m transect on the slopes of the surveyed seamount. The study demonstrates that safe, reliable AUV landing operation is feasible in actual seafloor environments.
+This paper describes a framework for an autonomous underwater vehicle to safely land on the seafloor. The design of an underwater vehicle with mm-resolution mapping system using structured light and hardware suitable for landing is proposed. A landing algorithm has been developed which uses this mm-resolution bathymetry to detect landing area on the seafloor. The algorithm identifies candidate sites within the landing area where an underwater vehicle of known geometry can safely land to make further observations or perform tasks on the seafloor. The algorithm also selects between multiple candidate sites based on a cost function that identifies the most suitable site for landing. To evaluate its performance, the algorithm was implemented on seafloor bathymetry obtained using an AUV with an equivalent high resolution mapping system during a real underwater survey at a seamount.
 \end{abstract}
 
 %%**********************************

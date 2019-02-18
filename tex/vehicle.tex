@@ -1,25 +1,28 @@
-\section{Landing hardware requirements}
+\section{Underwater landing vehicle}
+
+The design of an underwater vehicle was made after taking into consideration essential hardware for landing on the seafloor. In this work, we propose the developed of an underwater vehicle with negative buoyancy for landing. The negative buoyancy allows the AUV to land with minimum use of vertical thrust and remain stationary after landing while making seafloor observations. This also saves power and provides a vibration free environment for sensors. 
+
+%*************************************************************************
 
 \subsection{Vehicle hardware}
-The hardware requirements for vehicles to perform landing operations are sufficiently different to standard vehicles to warrant specific consideration. In this work, we propose a vehicle concept with negative buoyancy during operation. This minimises the use of vertical thrusters during landing operations, allowing the vehicle to remain stationary and vibration free whilst landed and saves power. 
 
-The features of the vehicle can be seen in the Fig.~\ref{f:mehul2}. Independent heave, surge, sway and heading control are needed to allow the vehicle to operate at low speeds manoeuvres and hover when necessary. Two horizontal thrusters provide surge and heading control. Two thrusters, inclined at $22.5^\circ$ with the vertical, control sway and heave. The inclined thrusters direct thrust away from the area directly below the vehicle to minimizing the disturbance of sand and sediments during landing. A nylon landing skid distributes the vehicle's weight and provides a stable footing when the vehicle has landed. This also provides enough clearence to protect the sensors on the the vehicle.
+ The design features on the vehicle can be seen in the Fig.~\ref{f:mehul2}. Two horizontal thrusters provide surge and heading control while two  thrusters, inclined at $22.5^\circ$ with the vertical, control sway and heave. Independent heave, surge, sway and heading control allows the vehicle to perform slow speed manoeuvres and hover when necessary. The inclined thrusters also direct the thrust away from the area directly below the vehicle minimizing the disturbance of sand and sediments during landing. 
 
 \begin{figure}[!ht]
-\centering\includegraphics[width=4.5in]{./images/mehul2.png}
-\caption{Concept design of a landing vehicle}
+\centering\includegraphics[width=4.7in]{./images/mehul2.png}
+\caption{Hardware features on the the underwater vehicle}
 \label{f:mehul2}
 \end{figure}
 
-The vehicle is designed to be negatively buoyant to allow for landing. Although variable buoyancy engines are available \cite{Zhao2008}, these typically have a capacity of \<1\,L, and the limited change in buoyancy imposes limits on the conditions under which a vehicle can remain securely landed. Here, a hydrodynamic solution is chosen using a fixed wing NACA$651412$ profile to offset the negative buoyancy during forward motion as this approach can compensate for a large change in buoyancy. This profile produces lift at zero angle of attack and so minimising the vehicle's drag. During slow manouvres the vehicle is still able to hover, and ethods such as the two drop weight method can be used for diving and fail-safe surfacing \cite{Thornton2019}. The vehicle has a standard navigation suite, consisting of a 1.2\,MHz Doppler Velocity Log (DVL), raised more than 30\,cm of the bottom of the vehicle to provide bottom lock even when landed, a compass based Attitude Heading Reference System (AHRS), and pressure depth sensor. In addition to standard localisation, the pressure sensor and DVL range can also be used to measure vertical motion during landing and confirm the vehicle remains stationary on the seafloor once landed.
+The vehicle is designed to be negatively buoyant for landing. Although variable buoyancy engines are available \cite{Zhao2008}, for our vehicle, negative buoyancy was obtained using fixed weights. A NACA$651412$ wing profile is used to offset the negative buoyancy by generating lift during forward motion at zero angle of attack. A nylon landing skid provides stable footing and protects sensors under the vehicle. Navigation is performed using dead reckoning by integrating the velocity obtained from a Doppler Velocity Log (DVL) and orientation with a pressure depth sensor to estimate the state of the vehicle at any moment in time. Although during landing, the vehicle can use altitude measurements from DVL beam range to estimate its distance from the seafloor, these fail to work below $0.3$ m  range. We propose to use record the depth of the vehicle before landing from an altitude of $1$ m and  estimate the depth at the landing point. 
 
 \subsection{High resolution mapping system}
 \label{ssec:hres}
 
-A high resolution mapping system using light sectioning is used to generating mm-resolution bathymetry, as illustrated in Fig.~\ref{f:mehul3}~\cite{Bodenmann2016} with associated parameters explained in Table~\ref{t:table0}. The sheet laser projects a line on the seafloor whose projection is captured by an offset camera. By detecting the laser line in the image, it is possible to determine the relative coordinates of each recognised point in the laser line. These can then be used to generate continuous bathymetry measurements in the earth-fixed coordinate system based on the vehicle's pose.
+A high resolution mapping system ~\cite{Bodenmann2016} using light sectioning is integrated into the vehicle for generating mm-resolution bathymetry. The hardware components of the system can be seen in Fig.~\ref{f:mehul3} and the parameters associated are explained in the Table~\ref{t:table0}. The system uses a sheet laser which projects a laser on the seafloor whose projection is captured by a camera mounted at an angle. The pixels in the image belonging to the laser image are identified and converted to local coordinates using the geometry of the system. These are then converted to earth coordinates using the position of the vehicle. 
 
 \begin{figure}[!ht]
-\centering\includegraphics[width=7in]{./images/mehul3.png}
+\centering\includegraphics[width=4.7in]{./images/mehul3.png}
 \caption{Setup and working of the high resolution mapping system}
 \label{f:mehul3}
 \end{figure}
